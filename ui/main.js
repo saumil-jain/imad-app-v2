@@ -6,7 +6,7 @@ button.onclick = function() {
     
     // capture response and set it on the page
     request.onreadystatechange = function() {
-        if (request.readystate === XMLHttpRequest.DONE) {
+        if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status === 200) {
                 var counter = request.responseText;
                 var span = document.getElementById("count");
@@ -16,6 +16,6 @@ button.onclick = function() {
     };
     
     // make the request
-    request.open('GET', 'http://saumil-jain.imad.hasura-app.io/counter', true);
-    request.send(null);    
+    request.open('GET', '/counter', true);
+    request.send(null);
 };
