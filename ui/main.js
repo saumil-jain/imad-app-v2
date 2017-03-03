@@ -19,3 +19,19 @@ button.onclick = function() {
     request.open('GET', '/counter', true);
     request.send(null);
 };
+
+var submit = document.getElementById("submit_btn");
+submit.onclick = function() {
+    // send the name to the server
+    var name = document.getElementById("name");
+    
+    
+    // capture list of names and render
+    var names = ['name1', 'name2', 'name3'];
+    var list = '';
+    for (var i = 0; i < names.length; i++) {
+        list = list + '<li>' + names[i] + '</li>';
+    }
+    var unorderedList = document.getElementById('nameList');
+    unorderedList.innerHTML = list;
+};
