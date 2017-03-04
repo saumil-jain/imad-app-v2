@@ -28,6 +28,12 @@ submit.onclick = function() {
     var request = new XMLHttpRequest();
     var nameInput = document.getElementById("name");
     var name = nameInput.value;
+
+    // empty name validation
+    if (name == '') {
+    	alert("Empty name not allowed!");
+    	return;
+    }
     
     request.onreadystatechange = function() {
         if (request.readyState === XMLHttpRequest.DONE) {
