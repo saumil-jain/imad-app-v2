@@ -73,8 +73,22 @@ function createTemplate(data) {
                 <div>
                     ${content}
                 </div>
+                <hr/>
+                <div>
+                    Enter comment below :
+                    <br>
+                    <textarea id="comment_box" style="width:75%" rows="5" placeholder="Enter comment.."></textarea>
+                    <input type="submit" value="Submit" id="submit_comment"/>
+                </div>
+                <div>
+                    Previous comments :<br>
+                    <ul id="comment_list">
+                    </ul>
+                </div>
             </div>
         </div>
+        <script type="text/javascript" src="/ui/article.js">
+        </script>
     </body>
     </html>
 
@@ -102,6 +116,14 @@ app.get('/submit-name', function (req, res) {
     res.send(JSON.stringify(names));
 });
 
+// process comments on article pages
+var comments = [];
+app.get('/submit-comment', function(req, res) {
+    var comment = req.query.comment;
+    comments.push(comment);
+    res.send(JSON.stringify(comments));
+});
+
 app.get('/:articleName', function (req, res) {
     var articleName = req.params.articleName;
     res.send(createTemplate(articles[articleName]));
@@ -117,6 +139,10 @@ app.get('/ui/main.js', function (req, res) {
 
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+app.get('/ui/article.js', function(req, res) {
+    res.sendFile(path.join(__dirname, 'ui', 'article.js'));
 });
 
 
